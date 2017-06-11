@@ -9,7 +9,8 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
     recipes: Recipe[] = [
-        new Recipe('Test Recipe', 'This is only a test', 'https://cdn.pixabay.com/photo/2017/04/04/04/33/beef-2200282_960_720.jpg')
+        new Recipe('Test Recipe', 'This is only a test', 'https://c1.staticflickr.com/1/606/21760756478_396b629fcf_b.jpg'),
+        new Recipe('Another Test', 'This is another test', 'https://upload.wikimedia.org/wikipedia/commons/c/c0/Pizza_with_tomatoes.jpg')
     ];
 
     constructor() {
