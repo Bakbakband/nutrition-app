@@ -21,4 +21,11 @@ export class ShoppingListService {
     	// Emitting event when ingredients list is changed
     	this.ingredientsChanged.emit(this.ingredients.slice());
     }
+
+    addIngredients(ingredients: Ingredient[]) {
+
+        // ECMAt 2016 spread operator conversts array into list
+        this.ingredients.push(...ingredients);
+        this.ingredientsChanged.emit(this.ingredients.slice());
+    }
 }
