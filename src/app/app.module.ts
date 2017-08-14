@@ -28,6 +28,8 @@ import { DataStorageService } from './shared/data-storage.service';
 
 // Routing module import
 import { AppRoutingModule } from './app-routing.module';
+import { SignUpComponent } from './auth/signup/signup.component';
+import { SignInComponent } from './auth/signin/signin.component';
 
 
 
@@ -44,7 +46,9 @@ import { AppRoutingModule } from './app-routing.module';
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
