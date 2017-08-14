@@ -18,13 +18,13 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 
-
 // Custom directive imports
 import { DropdownDirective } from './shared/dropdown.directive';
 
 // Service imports
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
+import { DataStorageService } from './shared/data-storage.service';
 
 // Routing module import
 import { AppRoutingModule } from './app-routing.module';
@@ -54,7 +54,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpModule
 
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
