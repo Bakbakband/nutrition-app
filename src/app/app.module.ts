@@ -14,9 +14,6 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { SignUpComponent } from './auth/signup/signup.component';
 import { SignInComponent } from './auth/signin/signin.component';
 
-// Custom directive imports
-import { DropdownDirective } from './shared/dropdown.directive';
-
 // Service imports
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
@@ -27,6 +24,9 @@ import { AuthGuard } from './auth/auth-guard.service';
 // Routing module import
 import { AppRoutingModule } from './app-routing.module';
 
+// Shared module import
+import { SharedModule } from './shared/shared.module';
+
 // Feature module import
 import { RecipesModule } from './recipes/recipes.module';
 
@@ -36,7 +36,6 @@ import { RecipesModule } from './recipes/recipes.module';
     HeaderComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective,
     SignUpComponent,
     SignInComponent
   ],
@@ -45,7 +44,8 @@ import { RecipesModule } from './recipes/recipes.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RecipesModule
+    RecipesModule,
+    SharedModule
   ],
   providers: [
     AuthGuard,
