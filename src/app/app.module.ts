@@ -24,20 +24,20 @@ import { SharedModule } from './shared/shared.module';
 
 // Feature module import
 import { AuthModule } from './auth/auth.module';
-import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpModule,
     AuthModule,
-    RecipesModule,
     SharedModule,
     ShoppingListModule
   ],
