@@ -7,7 +7,6 @@ import { HttpModule } from '@angular/http';
 
 // Custom compontent imports
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 
 // Service imports
 import { ShoppingListService } from './shopping-list/shopping-list.service';
@@ -24,18 +23,17 @@ import { SharedModule } from './shared/shared.module';
 
 // Feature module import
 import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HomeComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    CoreModule,
     HttpModule,
     AuthModule,
     SharedModule,
