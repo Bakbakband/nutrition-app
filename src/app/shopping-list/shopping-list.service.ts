@@ -11,10 +11,6 @@ export class ShoppingListService {
         new Ingredient('Cheese', 3)
     ];
 
-    getIngredients() {
-    	return this.ingredients.slice();
-    }
-
     getIngredient(index: number) {
         return this.ingredients[index];
     }
@@ -22,13 +18,6 @@ export class ShoppingListService {
     updateIngredient(index: number, newIngredient: Ingredient) {
         this.ingredients[index] = newIngredient;
         this.ingredientsChanged.next(this.ingredients.slice());
-    }
-
-    addIngredient(ingredient: Ingredient) {
-    	this.ingredients.push(ingredient);
-
-    	// Emitting event when ingredients list is changed
-    	this.ingredientsChanged.next(this.ingredients.slice());
     }
 
     deleteIngredient(index: number) {

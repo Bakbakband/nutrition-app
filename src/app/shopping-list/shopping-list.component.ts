@@ -1,5 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
 
 import { Ingredient } from '../shared/ingredient.model';
@@ -10,33 +12,17 @@ import { ShoppingListService } from './shopping-list.service';
     templateUrl: './shopping-list.component.html',
     styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit, OnDestroy {
-    ingredients: Ingredient[];
-        private subscription: Subscription;
+export class ShoppingListComponent implements OnInit {
+    shoppingListState: Observable<{ingredients: Ingredient[]}>;
 
-    constructor(private shoppingListService: ShoppingListService) { }
+    constructor(private shoppingListService: ShoppingListService, private store: Store<{shoppingList: {ingredients: Ingredient[]}}>) { }
 
     ngOnInit() {
-        this.ingredients = this.shoppingListService.getIngredients();
-
-        // Subscribe to changes on shopping list service ingredients list
-        // update ingredients list with updated list from the service
-        this.subscription = this.shoppingListService.ingredientsChanged
-            .subscribe(
-                (ingredients: Ingredient[]) => {
-                    this.ingredients = ingredients;
-                }
-            );
+        this.shoppingListState = this.store.select('shoppingList');
     }
 
     onEditItem(index: number) {
         this.shoppingListService.startedEditing.next(index);
-    }
-
-    ngOnDestroy() {
-        
-        // Preventing memory leaks by unsubscribing from custom observables
-        this.subscription.unsubscribe();
     }
 
 }
