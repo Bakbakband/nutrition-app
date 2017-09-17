@@ -3,7 +3,7 @@
 // ng module imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Custom compontent imports
 import { AppComponent } from './app.component';
@@ -26,8 +26,8 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    HttpClientModule,
     CoreModule,
-    HttpModule,
     AuthModule,
     SharedModule,
     ShoppingListModule

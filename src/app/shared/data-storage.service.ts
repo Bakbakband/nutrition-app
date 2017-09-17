@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http'; // New httpClient
 import 'rxjs/Rx';
 
 import { RecipeService } from '../recipes/recipe.service';
@@ -9,23 +9,45 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class DataStorageService {
   constructor(
-    private http: Http,
+    private httpClient: HttpClient,
     private recipeService: RecipeService,
     private authService: AuthService) {}
 
   storeRecipes() {
-    const token = this.authService.getToken();
 
-    return this.http.put('https://nutrition-app-72230.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes());
+    // Constructing custom http requests incl. responding to progress
+    const req = new HttpRequest(
+      'PUT',
+      'https://nutrition-app-72230.firebaseio.com/recipes.json',
+      this.recipeService.getRecipes(), 
+      {
+        reportProgress: true,
+      }
+    );
+
+    return this.httpClient.request(req);
+
+  // Alternative Approach:
+  //   return this.httpClient.put('https://nutrition-app-72230.firebaseio.com/recipes.json', 
+  //     this.recipeService.getRecipes(),
+  //     {
+  //       observe: 'body', // Listen to event also possible, or getting full response,
+  //       // headers: new HttpHeaders().set('Authorization', 'as34asdset34').append('another custom header')
+  //       params: new HttpParams().set('auth', token)
+  //     }
+  //   );
+
   }
 
   getRecipes() {
-    const token = this.authService.getToken();
-
-    this.http.get('https://nutrition-app-72230.firebaseio.com/recipes.json?auth=' + token)
+    // New httpClient module at work: Typed responses (being explicit about which data to expect)
+    this.httpClient.get<Recipe[]>('https://nutrition-app-72230.firebaseio.com/recipes.json',
+      {
+        observe: 'body',
+        responseType: 'json'
+      })
       .map(
-        (response: Response) => {
-          const recipes: Recipe[] = response.json();
+        (recipes) => { // No manually extraction of data from the reponse body anymore
           for (let recipe of recipes) {
             if (!recipe['ingredients']) {
               recipe['ingredients'] = [];
