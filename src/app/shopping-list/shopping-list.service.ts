@@ -27,7 +27,7 @@ export class ShoppingListService {
 
     addIngredients(ingredients: Ingredient[]) {
 
-        // ECMAt 2016 spread operator converts array into list
+        // ECMA 2016 spread operator converts array into list
         this.ingredients.push(...ingredients);
         this.ingredientsChanged.next(this.ingredients.slice());
     }
