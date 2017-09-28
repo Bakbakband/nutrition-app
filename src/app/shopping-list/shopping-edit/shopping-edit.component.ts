@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../../shared/ingredient.model';
 import * as ShoppingListActions from '../store/shopping-list.actions';
-import * as fromShoppingList from '../store/shopping-list.reducers';
+import * as fromApp from '../../store/app.reducers';
 
 @Component({
   	selector: 'app-shopping-edit',
@@ -18,8 +18,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     editMode = false;
     editedItem: Ingredient;
 
-  	constructor(
-      private store: Store<fromShoppingList.AppState>) { }
+  	constructor( private store: Store<fromApp.AppState>) { } // Injects state as service, set type to initial state type
 
   	ngOnInit() {
       this.subscription = this.store.select('shoppingList')
@@ -44,10 +43,10 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   	onSubmit(form: NgForm) {
       const value = form.value;
   		const newIngredient = new Ingredient(value.name, value.amount);
-      if (this.editMode) {
+      if (this.editMode) { // edit ingredient
         this.store.dispatch(new ShoppingListActions.UpdateIngredient({ingredient: newIngredient}))
-      } else {
-        this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
+      } else { // create new ingredient
+        this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient)); // dispatches action towards reducer to update state
       }
       form.reset();
       this.editMode = false; 

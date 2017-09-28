@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-
 import { Ingredient } from '../shared/ingredient.model';
-import * as fromShoppingList from './store/shopping-list.reducers';
 import * as ShoppingListActions from './store/shopping-list.actions';
+import * as fromApp from '../store/app.reducers';
 
 
 @Component({
@@ -15,12 +13,14 @@ import * as ShoppingListActions from './store/shopping-list.actions';
     styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-    shoppingListState: Observable<{ingredients: Ingredient[]}>;
+    shoppingListState: Observable<{ingredients: Ingredient[]}>; // loads initial state as specified in shoppingList
 
-    constructor(private store: Store<fromShoppingList.AppState>) { }
+    // Inject the state store like a normal service
+    // store is a generic type, we have to specify the expected state
+    constructor(private store: Store<fromApp.AppState>) { }
 
     ngOnInit() {
-        this.shoppingListState = this.store.select('shoppingList');
+        this.shoppingListState = this.store.select('shoppingList'); // this refers to observable 
     }
 
     onEditItem(index: number) {

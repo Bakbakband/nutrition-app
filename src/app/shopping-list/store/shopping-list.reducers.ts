@@ -1,10 +1,7 @@
 import { Ingredient } from '../../shared/ingredient.model';
 import * as ShoppingListActions from './shopping-list.actions';
 
-export interface AppState {
-    shoppingList: State
-}
-
+// Interface for states that can be implemented by initial state
 export interface State {
     ingredients: Ingredient[];
     editedIngredient: Ingredient;
@@ -23,12 +20,18 @@ const initialState: State = {
 
 // Reducer takes two arguments: State and what to do
 export function shoppingListReducer(state = initialState, action: ShoppingListActions.ShoppingListActions) {
-    
+
+    // Reducer makes a copy of the last state, modifies it and then returns it
+    // Simplest reducer return is a copy of the state without changes through actions
+    // Switch statement is used to determine what action is taken
     switch(action.type) {
         case ShoppingListActions.ADD_INGREDIENT:
             return {
+
+                // spread operator return all properties of old state object while building the new state object
+                // spread operator replaces function.apply(null, args) --> function(...args)
                 ...state,
-                ingredients: [...state.ingredients, state.editedIngredientIndex]
+                ingredients: [...state.ingredients, action.payload]
             };
         
         case ShoppingListActions.ADD_INGREDIENTS:

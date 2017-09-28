@@ -10,8 +10,8 @@ export const START_EDIT ='START_EDIT';
 export const STOP_EDIT ='STOP_EDIT';
 
 // Assigning identifier to type and ensuring payload
-export class AddIngredient implements Action {
-    readonly type = ADD_INGREDIENT;
+export class AddIngredient implements Action { // Implements Action type that expects..
+    readonly type = ADD_INGREDIENT; // .. readonly type
 
     // Constructor to use
     constructor(public payload: Ingredient) {}
@@ -45,7 +45,7 @@ export class StopEdit implements Action {
 
 // Bundling action information by defining own export type
 // Chain exports with the union type operator
-export type ShoppingListActions = 
+export type ShoppingListActions = // type keyword defines own typescript types
     AddIngredient | 
     AddIngredients | 
     UpdateIngredient | 
