@@ -19,10 +19,11 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
-
-// Ngrx module imports & Reducers
+// Ngrx module imports & Reducers & Effects
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/app.reducers';
+import { AuthEffects } from './auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { reducers } from './store/app.reducers';
     AuthModule,
     SharedModule,
     ShoppingListModule,
-    StoreModule.forRoot(reducers) //Registers reducers from main app reducer
+    StoreModule.forRoot(reducers), //Registers reducers from main app reducer
+    EffectsModule.forRoot([AuthEffects]),
   ],
   bootstrap: [AppComponent]
 })

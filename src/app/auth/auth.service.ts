@@ -11,6 +11,7 @@ export class AuthService {
 	constructor(private router: Router, private store: Store<fromApp.AppState>) {}
 
 	signupUser(email: string, password: string) {
+		// Async sideeffect: http request to firebase
 		firebase.auth().createUserWithEmailAndPassword(email, password)
 		.then(
 			user => {
