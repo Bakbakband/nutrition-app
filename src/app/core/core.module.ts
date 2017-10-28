@@ -10,7 +10,6 @@ import { AppRoutingModule } from '../app-routing.module';
 // Service imports
 import { RecipeService } from '../recipes/recipe.service';
 import { DataStorageService } from '../shared/data-storage.service';
-import { AuthService } from '../auth/auth.service';
 
 // Interceptor import
 import { AuthInterceptor } from '../shared/auth.interceptor';
@@ -29,7 +28,6 @@ import { AuthInterceptor } from '../shared/auth.interceptor';
 		HeaderComponent
 	],
 	providers: [
-    	AuthService,
     	DataStorageService,
 		RecipeService,
 		{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

@@ -3,15 +3,23 @@ import { Action } from '@ngrx/store';
 export const TRY_SIGNUP = 'TRY_SIGNUP'; 
 export const SIGNUP = 'SIGNUP';
 export const SIGNIN = 'SIGNIN';
+export const TRY_SIGNIN = "TRY_SIGNIN";
 export const LOGOUT = 'LOGOUT';
 export const SET_TOKEN = 'SET_TOKEN';
 
-// Usd for Effects
+// Used for Effects
 export class TrySignup implements Action {
     readonly type = TRY_SIGNUP;
     
     constructor(public payload: {username: string, password: string}) {}
 }
+
+export class TrySignin implements Action {
+    readonly type = TRY_SIGNIN;
+    
+    constructor(public payload: {username: string, password: string}) {}
+}
+
 
 export class Signup implements Action {
     readonly type = SIGNUP;
@@ -34,4 +42,4 @@ export class SetToken implements Action {
 
 // Generic type
 // pipe symbol in ts is a union type describing a value that can be of several types
-export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup;
+export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup | TrySignin;
