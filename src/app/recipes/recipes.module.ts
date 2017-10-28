@@ -12,12 +12,18 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
+import { recipeReducer } from './store/recipe.reducers';
+import { RecipeEffects } from './store/recipe.effects';
 
 // Feature Routes
 import { RecipesRoutingModule } from './recipes-routing.module';
 
 // Shared Module
 import { SharedModule } from '../shared/shared.module';
+
+// Ngrx imports
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -33,7 +39,9 @@ import { SharedModule } from '../shared/shared.module';
 		CommonModule,
     	ReactiveFormsModule,
     	RecipesRoutingModule,
-    	SharedModule
+		SharedModule,
+		StoreModule.forFeature('recipes', recipeReducer), // Dynamicall state injection when module is loaded 
+		EffectsModule.forFeature([RecipeEffects])
 	]
 })
 export class RecipesModule {}

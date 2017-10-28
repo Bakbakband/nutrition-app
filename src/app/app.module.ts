@@ -24,6 +24,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/app.reducers';
 import { AuthEffects } from './auth/store/auth.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+// Importing environment variable to only run devtools in dev env
+import { environment } from './../environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,8 @@ import { AuthEffects } from './auth/store/auth.effects';
     ShoppingListModule,
     StoreModule.forRoot(reducers), //Registers reducers from main app reducer
     EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   bootstrap: [AppComponent]
 })
