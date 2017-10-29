@@ -35,17 +35,17 @@ import { environment } from './../environments/environment';
     AppComponent,
   ],
   imports: [
-    AppRoutingModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'universal-app'}), // Used for SSR Rendering
     HttpClientModule,
+    AppRoutingModule,
     CoreModule,
     AuthModule,
     SharedModule,
     ShoppingListModule,
     StoreModule.forRoot(reducers), //Registers reducers from main app reducer
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects]), // Register Auth effects
     StoreRouterConnectingModule,
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [] // Redux DevTools 
   ],
   bootstrap: [AppComponent]
 })
