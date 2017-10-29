@@ -1,4 +1,6 @@
 // Simple NodeJS Server for SSR
+// Files needed for deployement: dist & dist-server folder, package.json & server.js
+// Execute server.js with desired port: node server.js
 'use strict';
 
 require('zone.js/dist/zone-node'); // Change detection node-based for angular

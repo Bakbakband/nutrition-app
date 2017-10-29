@@ -4,6 +4,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Custom compontent imports
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { environment } from './../environments/environment';
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'universal-app'}), // Used for SSR Rendering
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     CoreModule,
